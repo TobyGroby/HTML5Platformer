@@ -17,35 +17,25 @@ var Player = function()
 
 Player.prototype.update = function(deltaTime)
 {
-	// we’ll insert code here later
-	
-	// calculate the new position and velocity:
-	this.position.y = Math.floor(this.position.y + (deltaTime * this.velocity.y));
-	this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
-	this.velocity.x = bound(this.velocity.x + (deltaTime * ddx), -MAXDX, MAXDX);
-	this.velocity.y = bound(this.velocity.y + (deltaTime * ddy), -MAXDY, MAXDY);
-	if ((wasleft && (this.velocity.x > 0)) ||
-		(wasright && (this.velocity.x < 0)))
-	{
-		// clamp at zero to prevent friction from making us jiggle side to side
-		this.velocity.x = 0;
+	var left = false;
+var right = false;
+var jump = false;
+// check keypress events
+if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
+left = true;
 }
+if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
+right = true;
+}
+if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
+jump = true;
+}
+var wasleft = this.velocity.x < 0;
+var wasright = this.velocity.x > 0;
+var falling = this.falling;
+var ddx = 0; // acceleration
+var ddy = GRAVITY;
 	
-	// collision detection
-	// Our collision detection logic is greatly simplified by the fact that the
-	// player is a rectangle and is exactly the same size as a single tile.
-	// So we know that the player can only ever occupy 1, 2 or 4 cells.
-	// This means we can short-circuit and avoid building a general purpose
-	// collision detection engine by simply looking at the 1 to 4 cells that
-	// the player occupies:
-	var tx = pixelToTile(this.position.x);
-	var ty = pixelToTile(this.position.y);
-	var nx = (this.position.x)%TILE; // true if player overlaps right
-	var ny = (this.position.y)%TILE; // true if player overlaps below
-	var cell = cellAtTileCoord(LAYER_PLATFORMS, tx, ty);
-	var cellright = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty);
-	var celldown = cellAtTileCoord(LAYER_PLATFORMS, tx, ty + 1);
-	var celldiag = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty + 1);
 	if (left)
 		ddx = ddx - ACCEL; // player wants to go left
 	else if (wasleft)
@@ -65,32 +55,7 @@ Player.prototype.update = function(deltaTime)
 	this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
 	this.velocity.x = bound(this.velocity.x + (deltaTime * ddx), -MAXDX, MAXDX);
 	this.velocity.y = bound(this.velocity.y + (deltaTime * ddy), -MAXDY, MAXDY);
-
-
-	// we’ll insert code here later
-	// collision detection
-	// Our collision detection logic is greatly simplified by the fact that the
-	// player is a rectangle and is exactly the same size as a single tile.
-	// So we know that the player can only ever occupy 1, 2 or 4 cells.
-	// This means we can short-circuit and avoid building a general purpose
 	
-	// collision detection engine by simply looking at the 1 to 4 cells that
-	// the player occupies:
-	var tx = pixelToTile(this.position.x);
-	var ty = pixelToTile(this.position.y);
-	var nx = (this.position.x)%TILE; 	// true if player overlaps right
-	var ny = (this.position.y)%TILE; 	// true if player overlaps below
-	var cell = cellAtTileCoord(LAYER_PLATFORMS, tx, ty);
-	var cellright = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty);
-	var celldown = cellAtTileCoord(LAYER_PLATFORMS, tx, ty + 1);
-	var celldiag = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty + 1);
-	
-
-	// calculate the new position and velocity:
-	this.position.y = Math.floor(this.position.y + (deltaTime * this.velocity.y));
-	this.position.x = Math.floor(this.position.x + (deltaTime * this.velocity.x));
-	this.velocity.x = bound(this.velocity.x + (deltaTime * ddx), -MAXDX, MAXDX);
-	this.velocity.y = bound(this.velocity.y + (deltaTime * ddy), -MAXDY, MAXDY);
 	if ((wasleft && (this.velocity.x > 0)) ||
 	(wasright && (this.velocity.x < 0)))
 	{
@@ -153,13 +118,11 @@ Player.prototype.update = function(deltaTime)
 		}
 	}
 }
-	
-}
 
 Player.prototype.draw = function()
 {
 	context.save();
-		context.translate(this.x, this.y);
+		context.translate(this.position.x, this.position.y);
 		context.rotate(this.rotation);
 		context.drawImage(this.image, -this.width/2, -this.height/2);
 	context.restore();

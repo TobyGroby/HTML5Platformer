@@ -32,15 +32,15 @@ var FRICTION = MAXDX * 6;
 // (a large) instantaneous jump impulse
 var JUMP = METER * 1500;
 
-var cells //Holds the simplified collision data
+var cells = [];//Holds the simplified collision data
 function initialize (){
 	for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) { //initialize the collision map
-		cells[layer] = [];
+		cells[layerIdx] = [];
 		var idx = 0;
-		for(var y = 0; y <level1.layers[layer].height; y++) {
+		for(var y = 0; y <level1.layers[layerIdx].height; y++) {
 			cells[layerIdx][y] = [];
-			for(var x = 0; x < level1.layers[layersIdx].width; x++) {
-				if (level1.layers[layerIdx].data[idx] != 0 {
+			for(var x = 0; x < level1.layers[layerIdx].width; x++) {
+				if (level1.layers[layerIdx].data[idx] != 0) {
 						//for each tile we find in the the layer data, we need to create 4 collisions
 						//(because our collision squares are 35x35 but the  tile in the 
 						//level are 70x70
