@@ -4,8 +4,7 @@ var context = canvas.getContext("2d");
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 
-var player = new Player();
-var keyboard = new Keyboard();
+
 var LAYER_COUNT = 2;
 var LAYER_PLATFORMS = 0;
 var LAYER_LADDERS = 1;
@@ -31,6 +30,9 @@ var ACCEL = MAXDX * 2;
 var FRICTION = MAXDX * 6;
 // (a large) instantaneous jump impulse
 var JUMP = METER * 1500;
+
+var Player = new Player();
+var keyboard = new Keyboard();
 
 var cells = [];//Holds the simplified collision data
 function initialize (){
@@ -173,8 +175,8 @@ function run ()
 	
 	drawMap();
 	
-	player.update(deltaTime);
-	player.draw();
+	Player.update(deltaTime);
+	Player.draw();
 	
 		//update frame counter
 	fpsTime += deltaTime;
