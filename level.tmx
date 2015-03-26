@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="35" tileheight="35" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="54" height="15" tilewidth="35" tileheight="35" nextobjectid="1">
  <tileset firstgid="1" name="Platforms" tilewidth="70" tileheight="70" spacing="2" margin="2">
   <image source="tileset.png" width="1024" height="1024"/>
  </tileset>
- <layer name="Tile Layer 1" width="60" height="15">
+ <layer name="Tile Layer 1" width="54" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBhZoGGgHTAKaAr6BtoBo4BhCg310jN+J0DpiWj0JDq6YaSB0fw7OAB62ieU5ieg0bgAOfFLqluoAaZTKN9JLYcMMTBU8u9MIF4LZWOjZxLQ34HGb8BBN5LhtoFI78SCoRK/pAJcYQ7z75ERQgMAb3cuFQ==
+   eJxjYBieoGGgHTAKSAJ9A+2AUUASGI0v8sEEKD0RSk+ig52j8TUw4U4q6ITSgyW+hkKYDSTogNKDJb5oBRpw0I1E6h/IdITN7uEaX0PFX6SmBwANpBGn
   </data>
  </layer>
- <layer name="Tile Layer 2" width="60" height="15">
+ <layer name="Tile Layer 2" width="54" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt0lEJAEAIREH7xzHhBfBXT5CZBAtvIwCq3B7AKH1v+9HXh/boC3R6szYELQ==
+   eJxjYMAPphCQHwVDA4zGI/FgMIfVpoF2wCggCQxUfE3BwR4F+AG94ms0H1MHEApHaqX90fgaWmCkx9cRKGYYJjQAArkdAw==
   </data>
  </layer>
 </map>

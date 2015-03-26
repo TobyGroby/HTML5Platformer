@@ -1,10 +1,12 @@
 var canvas = document.getElementById("gameCanvas");
 var context = canvas.getContext("2d");
 
+var heartImage = document.createElement("img")
+heartImage.src = "6.png";
 var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
-
-
+var lives = 3 
+var score = 0;
 var LAYER_COUNT = 2;
 var LAYER_PLATFORMS = 0;
 var LAYER_LADDERS = 1;
@@ -144,27 +146,39 @@ function bound(value, min, max)
 
 function drawMap()
 {
-	for(var layerIdx=0; layerIdx<LAYER_COUNT; layerIdx++)
-	{
-		var idx = 0;
-		for( var y = 0; y < level1.layers[layerIdx].height; y++ )
+	//score 
+	context.fillStyle = "#f08a1d";
+	context.font="32px Arial";
+	var scoreText = "Score: " + score;
+	context.fillText(scoreText, SCREEN_WIDTH - 170, 35);
+	
+	for(var i=0; i<lives; i++)
 		{
-			for( var x = 0; x < level1.layers[layerIdx].width; x++ )
+			context.drawImage(heartImage, 80 + ((heartImage.width+2)*i), 10);
+		}
+
+	
+		for(var layerIdx=0; layerIdx<LAYER_COUNT; layerIdx++)
 			{
-				if( level1.layers[layerIdx].data[idx] != 0 )
+				var idx = 0;
+				for( var y = 0; y < level1.layers[layerIdx].height; y++ )
 				{
-					// the tiles in the Tiled map are base 1 (meaning a value of 0 means no tile), so subtract one from the tileset id to get the
-					// correct tile
-					var tileIndex = level1.layers[layerIdx].data[idx] - 1;
-					var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
-					var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_Y)) * (TILESET_TILE + TILESET_SPACING);
-					context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE, (y-1)*TILE, TILESET_TILE, TILESET_TILE);
+					for( var x = 0; x < level1.layers[layerIdx].width; x++ )
+					{
+						if( level1.layers[layerIdx].data[idx] != 0 )
+						{
+							// the tiles in the Tiled map are base 1 (meaning a value of 0 means no tile), so subtract one from the tileset id to get the
+							// correct tile
+							var tileIndex = level1.layers[layerIdx].data[idx] - 1;
+							var sx = TILESET_PADDING + (tileIndex % TILESET_COUNT_X) * (TILESET_TILE + TILESET_SPACING);
+							var sy = TILESET_PADDING + (Math.floor(tileIndex / TILESET_COUNT_Y)) * (TILESET_TILE + TILESET_SPACING);
+							context.drawImage(tileset, sx, sy, TILESET_TILE, TILESET_TILE, x*TILE, (y-1)*TILE, TILESET_TILE, TILESET_TILE);
+						}
+						idx++;
+					}
 				}
-				idx++;
 			}
 		}
-	}
-}
 
 function run ()
 {
