@@ -55,7 +55,7 @@ musicBackground = new Howl(
 	
 	sfxFire = new Howl(
 			{
-				urls: ["fireEffect.ogg"]
+				urls: ["fireEffect.ogg"],
 				buffer: true,
 				volume: 1,
 				onend: function(){

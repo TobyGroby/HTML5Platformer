@@ -57,18 +57,16 @@ var right = false;
 var jump = false;
 // check keypress events
 
-if(keyboard.isKeyDown(keyboard.KEY_UP)==true)
-	{	
-		jump=true;
+if(keyboard.isKeyDown(keyboard.KEY_UP)==true) {	
+		jump = true;
 	}
 	
 	if(this.cooldownTimer>0)
 	{
 		this.cooldownTimer-=deltaTime;
-	}
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE)==true&&this.cooldownTimer<=0)
-	{
-		sfxfire.play();
+	} 
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE)==true&&this.cooldownTimer<=0) {
+		sfxFire.play();
 		this.cooldownTimer=0.3;
 		//shoot a bullet
 	}
@@ -106,9 +104,7 @@ if(keyboard.isKeyDown(keyboard.KEY_RIGHT) == true) {
 			this.sprite.setAnimation(ANIM_WALK_RIGHT);
 	}
 
-if(keyboard.isKeyDown(keyboard.KEY_SPACE) == true) {
-jump = true;
-}
+
 
 var wasleft = this.velocity.x < 0;
 var wasright = this.velocity.x > 0;
