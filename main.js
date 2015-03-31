@@ -18,6 +18,8 @@ var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
+
+
 // arbitrary choice for 1m
 var METER = TILE;
 // very exaggerated gravity (6x)
@@ -36,8 +38,31 @@ var JUMP = METER * 1500;
 var Player = new Player();
 var keyboard = new Keyboard();
 
+var musicBackground;
+var sfxFire;
+
 var cells = [];//Holds the simplified collision data
 function initialize (){
+
+musicBackground = new Howl(
+	{
+		urls: ["background.ogg"],
+		loop: true,
+		buffer: true,
+		volume: 0.5
+	});
+	musicBackground.play();
+	
+	sfxFire = new Howl(
+			{
+				urls: ["fireEffect.ogg"]
+				buffer: true,
+				volume: 1,
+				onend: function(){
+						isSfxPlaying = false;
+				}
+			});
+
 	for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) { //initialize the collision map
 		cells[layerIdx] = [];
 		var idx = 0;
@@ -107,6 +132,33 @@ var fpsTime = 0;
 var chuckNorris = document.createElement("img");
 chuckNorris.src = "hero.png";
 
+function run ()
+{
+	context.fillStyle = "#ccc";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	
+	var deltaTime = getDeltaTime();
+	
+	drawMap();
+	
+	Player.update(deltaTime);
+	Player.draw();
+	
+		//update frame counter
+	fpsTime += deltaTime;
+	fpsCount++;
+	if(fpsTime >= 1)
+	{
+		fpsTime-= 1;
+		fps = fpsCount;
+		fpsCount = 0;
+	}
+	//draw the fps
+	context.fillStyle = "#f00";
+	context.font="14px Arial";
+	context.fillText("FPS:" + fps, 5, 20, 100);
+}
+
 function cellAtPixelCoord(layer, x,y)
 {
 	if(x<0 || x>SCREEN_WIDTH || y<0)
@@ -146,6 +198,24 @@ function bound(value, min, max)
 
 function drawMap()
 {
+var maxTiles = Math.floor(SCREEN_WIDTH / TILE) + 2;
+var tileX = pixelToTile(Player.position.x);
+var offsetX = TILE + Math.floor(Player.position.x%TILE);
+	startX = tileX - Math.floor(maxTiles/2);
+	
+	if(startX < -1)
+	{
+		startX = 0;
+		offsetX = 0;
+	}
+	if(startX > MAP.tw - maxTiles)
+	{
+		startX = MAP.tw - maxTiles + 1;
+		offsetX = TILE;
+	}
+	worldOffsetX = startX * TILE + offsetX;
+	
+
 	//score 
 	context.fillStyle = "#f08a1d";
 	context.font="32px Arial";
@@ -180,32 +250,7 @@ function drawMap()
 			}
 		}
 
-function run ()
-{
-	context.fillStyle = "#ccc";
-	context.fillRect(0, 0, canvas.width, canvas.height);
-	
-	var deltaTime = getDeltaTime();
-	
-	drawMap();
-	
-	Player.update(deltaTime);
-	Player.draw();
-	
-		//update frame counter
-	fpsTime += deltaTime;
-	fpsCount++;
-	if(fpsTime >= 1)
-	{
-		fpsTime-= 1;
-		fps = fpsCount;
-		fpsCount = 0;
-	}
-	//draw the fps
-	context.fillStyle = "#f00";
-	context.font="14px Arial";
-	context.fillText("FPS:" + fps, 5, 20, 100);
-}
+
 
 initialize();
 

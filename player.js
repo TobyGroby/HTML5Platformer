@@ -11,7 +11,8 @@ var ANIM_JUMP_RIGHT = 6;
 var ANIM_WALK_RIGHT = 7;
 var ANIM_SHOOT_RIGHT = 8;
 var ANIM_MAX = 9;
-
+var worldoffsetX;
+	
 
 var Player = function()
 {
@@ -55,6 +56,22 @@ Player.prototype.update = function(deltaTime)
 var right = false;
 var jump = false;
 // check keypress events
+
+if(keyboard.isKeyDown(keyboard.KEY_UP)==true)
+	{	
+		jump=true;
+	}
+	
+	if(this.cooldownTimer>0)
+	{
+		this.cooldownTimer-=deltaTime;
+	}
+	if(keyboard.isKeyDown(keyboard.KEY_SPACE)==true&&this.cooldownTimer<=0)
+	{
+		sfxfire.play();
+		this.cooldownTimer=0.3;
+		//shoot a bullet
+	}
 
 if(keyboard.isKeyDown(keyboard.KEY_LEFT) == true) {
 	left = true; 
@@ -194,5 +211,5 @@ var ddy = GRAVITY;
 
 Player.prototype.draw = function()
 {
-	this.sprite.draw(context, this.position.x, this.position.y);
+	this.sprite.draw (context,this.position.x - worldOffsetX, this.position.y);
 }
