@@ -7,9 +7,10 @@ var startFrameMillis = Date.now();
 var endFrameMillis = Date.now();
 var lives = 3 
 var score = 0;
-var LAYER_COUNT = 2;
+var LAYER_COUNT = 3;
 var LAYER_PLATFORMS = 0;
 var LAYER_LADDERS = 1;
+var LAYER_LAYER3 = 2;
 var MAP = {tw:60, th:15,};
 var TILE = 35
 var TILESET_TILE = TILE * 2;
@@ -18,7 +19,18 @@ var TILESET_SPACING = 2;
 var TILESET_COUNT_X = 14;
 var TILESET_COUNT_Y = 14;
 
+var ENEMY_MAXDX = METER * 5;
+var ENEMY_ACCEL =ENEMY_MAXDX * 2;
 
+var enemies = [];
+
+var LAYER_COUNT = 3;
+var LAYER_BACKGROUND = 0;
+var LAYER_PLATFORMS = 1;
+var LAYER_LADDERS = 2;
+
+var LAYER_OBJECT_ENEMIES = 3;
+var LAYER_OBJECT_TRIGGERS = 4;
 
 // arbitrary choice for 1m
 var METER = TILE;
@@ -85,6 +97,24 @@ musicBackground = new Howl(
 					idx++;
 				}
 			}
+		}
+		
+		//adding enemies
+		idx = 0;
+		for(var y = 0; y < level1.layers[LAYER_OBJECT_ENEMIES].height; y++) {
+				for(var x = 0; x < level1.layers[LAYER_OBJECT_ENEMIES].width; x++) {
+						if(level1.layers[LAYER_OBJECT_ENEMIES].data[idx] != 0){
+								var px = tileToPixel(x);
+								var py = tileToPixel(y);
+								var e = new Enemy(px, py);
+								enemies.push(e);
+							}
+							idx++;
+						}
+					}
+		for(var i=0; i<enemies.length; i++)
+		{
+			enemies[i].update(deltaTime);
 		}
 	}
 

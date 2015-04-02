@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="54" height="15" tilewidth="35" tileheight="35" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="70" height="15" tilewidth="35" tileheight="35" nextobjectid="1">
  <tileset firstgid="1" name="Platforms" tilewidth="70" tileheight="70" spacing="2" margin="2">
   <image source="tileset.png" width="1024" height="1024"/>
  </tileset>
- <layer name="Tile Layer 1" width="54" height="15">
+ <layer name="Platformers" width="70" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBieoGGgHTAKSAJ9A+2AUUASGI0v8sEEKD0RSk+ig52j8TUw4U4q6ITSgyW+hkKYDSTogNKDJb5oBRpw0I1E6h/IdITN7uEaX0PFX6SmBwANpBGn
+   eJztlUsOgCAMRLm5qBvdEPUEelM3NSGNJKU2tnzeZhYQOiVDca7zhtc20CmKoG1AgA10Bz20jDRADXmxyASKs0zlrzdwgl7E/VJ5CUgtQvW2fqjx5GRm1raOdF4wlv4Kaq8L42ycE/x+LOclx5vlPqRJ9TqAetAxWvMJjfeUTm15wTOKO6tquxcpcnq9AUNyHQQ=
   </data>
  </layer>
- <layer name="Tile Layer 2" width="54" height="15">
+ <layer name="Ladders" width="70" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYMAPphCQHwVDA4zGI/FgMIfVpoF2wCggCQxUfE3BwR4F+AG94ms0H1MHEApHaqX90fgaWmCkx9cRKGYYJjQAArkdAw==
+   eJzt0rEJACAMRcHsP46u4GCCuECqGLmDkPYXL4JfzOoBtDKqB9CKXsjQCxl6IUMvvGrdC//8DejAHvo=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="70" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
   </data>
  </layer>
 </map>
