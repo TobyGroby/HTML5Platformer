@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="Platforms" tilewidth="70" tileheight="70" spacing="2" margin="2">
   <image source="tileset.png" width="1024" height="1024"/>
  </tileset>
- <layer name="Platformers" width="70" height="15">
+ <layer name="Platforms" width="70" height="15">
   <data encoding="base64" compression="zlib">
    eJztlUsOgCAMRLm5qBvdEPUEelM3NSGNJKU2tnzeZhYQOiVDca7zhtc20CmKoG1AgA10Bz20jDRADXmxyASKs0zlrzdwgl7E/VJ5CUgtQvW2fqjx5GRm1raOdF4wlv4Kaq8L42ycE/x+LOclx5vlPqRJ9TqAetAxWvMJjfeUTm15wTOKO6tquxcpcnq9AUNyHQQ=
   </data>
@@ -16,6 +16,11 @@
  <layer name="Tile Layer 3" width="70" height="15">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T20JT6AAAAAAPgYQaAAB
+  </data>
+ </layer>
+ <layer name="Enemies" width="70" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt1LENAAAIAjD//8nfvMJgTLvDBlVs6nA+3Q9k2ThwjV8C+G8A2wQDsg==
   </data>
  </layer>
 </map>

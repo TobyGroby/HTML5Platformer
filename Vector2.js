@@ -4,6 +4,7 @@ var Vector2 = function()
 	this.y = 0;
 }
 
+
 Vector2.prototype.set = function ( _x, _y)
 {
 	this.x = _x;

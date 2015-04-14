@@ -164,7 +164,7 @@ var ddy = GRAVITY;
 	var cellright = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty);
 	var celldown = cellAtTileCoord(LAYER_PLATFORMS, tx, ty + 1);
 	var celldiag = cellAtTileCoord(LAYER_PLATFORMS, tx + 1, ty + 1);
-	
+		
 	// If the player has vertical velocity, then check to see if they have hit a platform
 	// below or above, in which case, stop their vertical velocity, and clamp their
 	// y position:

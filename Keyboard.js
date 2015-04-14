@@ -9,15 +9,16 @@ var Keyboard = function() {
 	
 	//Key constants
 	this.KEY_SPACE = 32;
+	console.log("space");
 	this.KEY_LEFT = 37;
 	this.KEY_RIGHT = 39;
-	this. KEY_DOWN = 40;
+	this.KEY_DOWN = 40;
 	
 	this.KEY_A = 65;
-	this.KEY_D = 68
-	this.KEY_S = 83
+	this.KEY_D = 68;
+	this.KEY_S = 83;
 	this.KEY_W = 87;
-	this.KEY_SHIT = 16;
+	this.KEY_SHIFT = 16;
 };
 
 Keyboard.prototype.onKeyDown = function(evt)
